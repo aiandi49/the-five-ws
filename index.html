@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Five W's — Erica's Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --paper: #FBF4EC;
+    --card: #FFFFFF;
+    --card-tint: #FFF9F2;
+    --ink: #2A1E1B;
+    --ink-soft: #5C4E48;
+    --ink-faint: #8A7A72;
+    --berry: #7A2138;
+    --berry-soft: #A8455C;
+    --gold: #A8752B;
+    --gold-soft: #C99A4C;
+    --rose: #E9C9C2;
+    --line: rgba(42,30,27,0.12);
+    --shadow-sm: 0 2px 10px rgba(122,33,56,0.06);
+    --shadow-md: 0 12px 40px rgba(60,30,25,0.10);
+    --shadow-lg: 0 24px 70px rgba(60,30,25,0.16);
+    --grad-hero: linear-gradient(135deg, #6C1A30 0%, #8C3049 32%, #B85A47 62%, #C99A4C 100%);
+    --grad-callout: linear-gradient(135deg, #F4E1C5 0%, #EAC9AE 100%);
+    --watermark: rgba(122,33,56,0.055);
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] {
+    --paper: #17100F;
+    --card: #211715;
+    --card-tint: #271B18;
+    --ink: #F3E7DC;
+    --ink-soft: #D3BFB2;
+    --ink-faint: #A28C7F;
+    --berry: #E48A9C;
+    --berry-soft: #D66E86;
+    --gold: #E3B968;
+    --gold-soft: #EAC885;
+    --rose: #3A2320;
+    --line: rgba(243,231,220,0.12);
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.25);
+    --shadow-md: 0 12px 40px rgba(0,0,0,0.4);
+    --shadow-lg: 0 24px 70px rgba(0,0,0,0.55);
+    --grad-hero: linear-gradient(135deg, #3A0F1D 0%, #5B1E30 30%, #7A3327 62%, #9C7530 100%);
+    --grad-callout: linear-gradient(135deg, #2E2013 0%, #3B2818 100%);
+    --watermark: rgba(228,138,156,0.07);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+
+  ::selection { background: var(--gold-soft); color: #1c1210; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Theme toggle ---------- */
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 14px 8px 12px;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .theme-toggle svg { width: 14px; height: 14px; display: block; }
+  .theme-toggle .sun { display: none; }
+  [data-theme="dark"] .theme-toggle .sun { display: block; }
+  [data-theme="dark"] .theme-toggle .moon { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background: var(--grad-hero);
+    padding: 96px 24px 150px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle at 18% 22%, rgba(255,255,255,0.16), transparent 42%),
+                       radial-gradient(circle at 82% 78%, rgba(255,255,255,0.10), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-inner { position: relative; max-width: 640px; margin: 0 auto; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,247,238,0.82);
+    margin: 0 0 22px;
+  }
+  .eyebrow .dot { color: rgba(255,247,238,0.5); margin: 0 8px; }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(48px, 10vw, 84px);
+    line-height: 0.98;
+    color: #FFF7EE;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero .sub {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 3vw, 23px);
+    color: rgba(255,247,238,0.92);
+    max-width: 520px;
+    margin: 0 auto 34px;
+    line-height: 1.5;
+  }
+  .byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    color: rgba(255,247,238,0.75);
+  }
+  .byline strong { color: #FFF7EE; font-weight: 500; }
+
+  /* ---------- Intro card ---------- */
+  .intro-card {
+    position: relative;
+    background: var(--card);
+    border-radius: 22px;
+    box-shadow: var(--shadow-lg);
+    padding: 52px 48px;
+    margin: -100px auto 0;
+    max-width: 720px;
+    z-index: 5;
+  }
+  .intro-card p { margin: 0 0 16px; color: var(--ink-soft); font-size: 17px; }
+  .intro-card p:last-child { margin-bottom: 0; }
+  .dropcap:first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 68px;
+    line-height: 0.75;
+    float: left;
+    padding: 6px 10px 0 0;
+    color: var(--berry);
+  }
+
+  /* ---------- Section framework ---------- */
+  main { padding: 90px 0 40px; }
+
+  section.piece {
+    position: relative;
+    margin: 0 auto 64px;
+    max-width: 760px;
+    padding: 0 24px;
+  }
+
+  .card {
+    position: relative;
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    padding: 56px 44px;
+    overflow: hidden;
+  }
+
+  .watermark-letter {
+    position: absolute;
+    top: -0.12em;
+    right: 0.02em;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 240px;
+    line-height: 1;
+    color: var(--watermark);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .card-inner { position: relative; z-index: 1; }
+
+  .section-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: "";
+    width: 22px; height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.08;
+    margin: 0 0 26px;
+    color: var(--ink);
+    max-width: 90%;
+  }
+
+  .card-inner p {
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    margin: 0 0 18px;
+  }
+  .card-inner p:last-child { margin-bottom: 0; }
+
+  /* ---------- Pull quote ---------- */
+  .pullquote {
+    margin: 30px 0 6px;
+    padding: 26px 28px;
+    background: var(--card-tint);
+    border-left: 3px solid var(--berry);
+    border-radius: 4px 14px 14px 4px;
+  }
+  .pullquote p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(19px, 2.6vw, 23px);
+    line-height: 1.42;
+    color: var(--ink);
+    margin: 0 0 12px !important;
+  }
+  .rec-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .rec-tag .rec-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--berry-soft);
+    display: inline-block;
+  }
+
+  /* ---------- Timeline strip (WHERE section) ---------- */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 34px 0 8px;
+  }
+  .timeline .tl-item {
+    border-top: 2px solid var(--line);
+    padding-top: 12px;
+  }
+  .timeline .tl-item.hit { border-top-color: var(--berry); }
+  .tl-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .tl-label {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* ---------- Divider ---------- */
+  .divider {
+    max-width: 760px;
+    margin: 0 auto 64px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--ink-faint);
+  }
+  .divider .line { flex: 1; height: 1px; background: var(--line); }
+  .divider .mark {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ---------- Two conclusions ---------- */
+  .duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .duo .voice {
+    background: var(--card-tint);
+    border-radius: 14px;
+    padding: 30px 26px;
+  }
+  .duo .voice h3 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 14px;
+    color: var(--berry);
+  }
+  .duo .voice p { font-size: 15.5px; color: var(--ink-soft); margin: 0; }
+
+  /* ---------- Callout box ---------- */
+  .callout {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto 70px;
+    padding: 0 24px;
+  }
+  .callout-inner {
+    background: var(--grad-callout);
+    border-radius: 20px;
+    padding: 52px 44px;
+    box-shadow: var(--shadow-md);
+  }
+  .callout-inner .section-eyebrow { color: var(--berry); }
+  .callout-inner .section-eyebrow::before { background: var(--berry); }
+  .callout-inner h2 { color: #3B2313; }
+  [data-theme="dark"] .callout-inner h2 { color: #F3E7DC; }
+  .callout-list { list-style: none; margin: 20px 0 0; padding: 0; }
+  .callout-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #4A2E17;
+  }
+  [data-theme="dark"] .callout-list li { color: #E9D9C6; }
+  .callout-list li:last-child { margin-bottom: 0; }
+  .callout-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--berry);
+  }
+
+  /* ---------- Closing ---------- */
+  .closing {
+    max-width: 620px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .closing p.big {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0 0 26px;
+  }
+  .closing .attribution {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  footer {
+    text-align: center;
+    padding: 44px 24px 70px;
+    color: var(--ink-faint);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    border-top: 1px solid var(--line);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  footer p { margin: 6px 0; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .intro-card { padding: 40px 28px; margin-top: -70px; border-radius: 18px; }
+    .card { padding: 40px 26px; }
+    .callout-inner { padding: 40px 26px; }
+    .watermark-letter { font-size: 150px; }
+    .timeline { grid-template-columns: repeat(2, 1fr); row-gap: 22px; }
+    .duo { grid-template-columns: 1fr; }
+    .hero { padding: 80px 20px 130px; }
+    h2.section-title { max-width: 100%; }
+  }
+
+  @media (max-width: 420px) {
+    body { font-size: 16px; }
+    .hero { padding: 72px 18px 120px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  <span id="themeLabel">Dark</span>
+</button>
+
+<div class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">AN ORAL HISTORY <span class="dot">·</span> TWO RECORDED CONVERSATIONS</p>
+    <h1>The Five&nbsp;W's</h1>
+    <p class="sub">What Erica learned about being left to raise herself — and what it took to get free.</p>
+    <p class="byline">As told to her brother <strong>Marty</strong> · Shared as a teaching tool</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="intro-card">
+    <p class="dropcap">Every family has a version of events. This is one sibling's attempt to get the true one down on tape. Erica sat down with her brother for two recorded conversations, structured around the oldest tool in journalism — the five W's — because sometimes the only way to finally say a hard thing out loud is to answer a question instead of making a confession.</p>
+    <p>What follows isn't therapy, and it isn't a takedown. It's a record: of an empty refrigerator, of neighbors who fed a child who wasn't theirs, of a paycheck signed over for three years running, and of a woman who eventually stopped waiting to be rescued and rescued herself.</p>
+    <p>We're publishing it because somewhere, right now, someone is convincing themselves that going hungry — and handing over their own paycheck — is just what family does. It isn't. Here's how you know.</p>
+  </div>
+</div>
+
+<main>
+
+  <section class="piece" id="who">
+    <div class="card">
+      <div class="watermark-letter">W</div>
+      <div class="card-inner">
+        <p class="section-eyebrow">The First W</p>
+        <h2 class="section-title">Who: The People Who Actually Showed Up</h2>
+        <p>Ask Erica who Gloria was to her, and the honest answer changes depending on the year. In the earliest memories — ages one through six, roughly — Gloria was, in Erica's words, genuinely a mother: baths, matching outfits, someone making sure her hair got done even though she never learned how to do it herself. Something shifted as the kids got old enough to manage on their own. Self-sufficiency turned out to be the family's quiet fault line — Erica and her older brother Marty became so good at fending for themselves that it gave their mother permission to stop trying.</p>
+        <p>What filled the gap wasn't more parenting. It was other people's mothers. A drum-corps family took the two of them in on weekends like extra siblings. A neighbor a few doors down fed Erica dinner three or four nights a week without ever making it a production. A friend's mother wanted to adopt her outright. Their father was present but passive — "like having an uncle," Erica says, one who worked two jobs, took them fishing when he had the energy, and deferred every hard conversation with the same line: <em>ask your mother.</em> The people who actually raised Erica, day to day, were rarely the ones whose job it technically was.</p>
+        <div class="pullquote">
+          <p>"Marty always made sure I had what I needed — even down to food."</p>
+          <span class="rec-tag"><span class="rec-dot"></span>Part One · 05:27</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="line"></div><span class="mark">01 / 05</span><div class="line"></div></div>
+
+  <section class="piece" id="what">
+    <div class="card">
+      <div class="watermark-letter">W</div>
+      <div class="card-inner">
+        <p class="section-eyebrow">The Second W</p>
+        <h2 class="section-title">What: A Kind of Hungry That Starts to Feel Normal</h2>
+        <p>By ten or eleven, Erica says, the neglect "hit a high point." Dinner became a question with no reliable answer — whatever you could find, if anything at all. Some nights she'd end up at a neighbor's table instead. Other mornings meant scrounging change for breakfast before school. The family lived in the suburbs, and Erica remembers being told, more than once, to feel lucky she "wasn't in the hood" — as if geography could stand in for a full refrigerator. It couldn't. A child going hungry in a house with a driveway is still a child going hungry.</p>
+        <p>It would be years before Erica understood why. Gloria, she eventually learned, was managing a compulsive relationship with money — one that quietly rerouted grocery funds before groceries ever got bought. As a kid, Erica didn't have language for any of it. She just adapted, the way children do: got resourceful, got independent, got good at not needing anyone to notice her. It's the kind of coping mechanism that looks like strength from the outside and costs something different on the inside.</p>
+        <div class="pullquote">
+          <p>"It got to the point where I was at their house for dinner three or four nights out of the week."</p>
+          <span class="rec-tag"><span class="rec-dot"></span>Part One · 10:20</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="line"></div><span class="mark">02 / 05</span><div class="line"></div></div>
+
+  <section class="piece" id="when">
+    <div class="card">
+      <div class="watermark-letter">W</div>
+      <div class="card-inner">
+        <p class="section-eyebrow">The Third W</p>
+        <h2 class="section-title">When: Late '80s to 2002 — Clocking the Exit</h2>
+        <p>Erica traces the realization to other people's kitchen tables. At friends' houses, she watched two working parents come home and still manage to cook dinner and sit down together — something that had never once happened at her own. <em>Why the hell can't my mother do that?</em> became the question that wouldn't leave her alone.</p>
+        <p>The exit plan started early and took years to execute. At eighteen, legally free, she still couldn't fully leave — college was the price of staying in the family's good graces, even one she wasn't sure her mother could really afford to send her to. Erica enrolled, left when the fit was wrong, and spent her late teens moving between towns in Connecticut before landing in a studio apartment with friends in New Haven at nineteen. That was the real beginning — chasing music, paying her own way, answering to no one. A brief, unfortunate return home followed at twenty-one. But by 2002, at twenty-two, Erica moved to New York City for good, and started building a life around photography and video — the craft she'd wanted all along.</p>
+        <div class="pullquote">
+          <p>"I knew from jump — when I get grown, I'm out."</p>
+          <span class="rec-tag"><span class="rec-dot"></span>Part One · 27:16</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="line"></div><span class="mark">03 / 05</span><div class="line"></div></div>
+
+  <section class="piece" id="where">
+    <div class="card">
+      <div class="watermark-letter">W</div>
+      <div class="card-inner">
+        <p class="section-eyebrow">The Fourth W</p>
+        <h2 class="section-title">Where: Connecticut to New York to New Jersey — And the Year the Lights Went Out</h2>
+        <p>Leaving the house didn't end the pattern — it just changed shape. In her late twenties, living alone in New Jersey and commuting into New York City for work, Erica agreed to something she'd spend the next three years regretting: letting her mother take a cut of every paycheck. What began as "helping out" became a standing arrangement that left Erica with roughly a hundred dollars every two weeks — meant to cover groceries, commuting, and everything else. She gave up her gym membership. She started rationing food. Before that arrangement even began, she'd been talked into cashing out her entire 401(k) — six thousand dollars — for an emergency that was never fully explained, then spent years paying early-withdrawal penalties on money she never got to keep.</p>
+        <p>Stack that on top of IRS debt and student-loan wage garnishment already coming out of every check, and there wasn't much left. The breaking point came the day her electricity got shut off. She moved in with a friend for over a week while she scraped together the money to turn it back on. Another friend quietly restocked her apartment with groceries and cleaning supplies for months, no questions asked, because Erica was too embarrassed to explain where her paycheck kept going.</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">2003</div><div class="tl-label">First full-time job. The arrangement begins.</div></div>
+          <div class="tl-item hit"><div class="tl-year">Late 20s</div><div class="tl-label">Three years of paychecks signed over. 401(k) drained.</div></div>
+          <div class="tl-item hit"><div class="tl-year">Rock bottom</div><div class="tl-label">The lights go out. She moves in with a friend.</div></div>
+          <div class="tl-item"><div class="tl-year">2022</div><div class="tl-label">Financially cut off, completely, for good.</div></div>
+        </div>
+        <div class="pullquote">
+          <p>"I was going to my change bucket in the morning, scrounging through pennies just so I could eat breakfast."</p>
+          <span class="rec-tag"><span class="rec-dot"></span>Part Two</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="line"></div><span class="mark">04 / 05</span><div class="line"></div></div>
+
+  <section class="piece" id="why">
+    <div class="card">
+      <div class="watermark-letter">W</div>
+      <div class="card-inner">
+        <p class="section-eyebrow">The Fifth W</p>
+        <h2 class="section-title">Why: Nobody Ever Made Her Answer for It</h2>
+        <p>Erica's theory isn't complicated, and she doesn't dress it up: her mother got away with it for so long that there was never a reason to stop. "A kid can't make you hold yourself accountable," she says — no one in the house had the standing to name the behavior, so it just continued, year after year, decade after decade. She traces some of it further back, to a mother who was never steady with love herself, and to a wider family Erica describes as quick to smile and quicker to undercut — the kind of relatives who circled whenever Gloria started doing well, and did what they could to unravel it, collateral damage included.</p>
+        <p>Erica isn't interested in a tidy villain origin story, though. She's also not interested in absolution. "I'm not a psychologist," she says, "and I don't think a psychologist has the full explanation either. People do people things." What she does believe is that patterns like this don't resolve on their own — they resolve when someone finally refuses to keep absorbing the cost. In her case, that person had to be her.</p>
+        <div class="pullquote">
+          <p>"She kept doing it because she kept getting away with it."</p>
+          <span class="rec-tag"><span class="rec-dot"></span>Part Two</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="line"></div><span class="mark">05 / 05</span><div class="line"></div></div>
+
+  <section class="piece" id="conclusions">
+    <div class="card">
+      <div class="card-inner">
+        <p class="section-eyebrow">Two Closing Statements</p>
+        <h2 class="section-title">Where They Landed</h2>
+        <div class="duo">
+          <div class="voice">
+            <h3>Erica</h3>
+            <p>"Gloria is who she is. She never did the work to change, and I don't think she has it in her to. I don't think she was ever loved properly herself, and she was never strong enough to get past that. I'm not trying to erase the good times — there were real ones. I just won't pretend the rest didn't happen. She's almost eighty. I hope she finds some peace before it's over. I just don't know what that would take."</p>
+          </div>
+          <div class="voice">
+            <h3>Marty</h3>
+            <p>"Listening to all of this back, what strikes me is how little of it actually had to do with Erica. You don't have to tear someone else down to be enough. Erica never needed permission to be worth something — she just had to stop waiting for it. That's the takeaway for anyone who's lived a version of this story: you get to decide what you carry forward, and what you finally put down."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="callout">
+    <div class="callout-inner">
+      <p class="section-eyebrow">A Note, If You're Reading This as a Mirror</p>
+      <h2 class="section-title" style="max-width:100%;">If Any of This Sounds Familiar</h2>
+      <ul class="callout-list">
+        <li>Going hungry in a house that "looks fine" from the outside is still neglect — regardless of the zip code.</li>
+        <li>A parent asking to "borrow" your paycheck on a recurring basis isn't help. It's a pattern, and it's allowed to have a limit.</li>
+        <li>Being "the independent one" as a kid is often a symptom, not a personality trait.</li>
+        <li>Found family counts. The neighbor who feeds you, the friend who restocks your fridge — that's not charity. That's family showing up in whatever form is available.</li>
+        <li>You're allowed to set a hard stop, even decades in. Erica's took nineteen years. It still counted.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p class="big">"You don't have to judge others to be awesome. You're awesome in your own right. Focus on yourself, and internalize your own happiness."</p>
+    <p class="attribution">— Marty, closing the recording</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>Recorded across two conversations, structured around the classic five W's.</p>
+  <p>Shared with Erica's blessing, in the hope it's useful to someone still living it.</p>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    var label = document.getElementById('themeLabel');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var current = prefersDark ? 'dark' : 'light';
+    root.setAttribute('data-theme', current);
+    updateLabel();
+
+    toggle.addEventListener('click', function() {
+      current = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', current);
+      updateLabel();
+    });
+
+    function updateLabel() {
+      label.textContent = current === 'dark' ? 'Light' : 'Dark';
+    }
+  })();
+</script>
+
+</body>
+</html>
