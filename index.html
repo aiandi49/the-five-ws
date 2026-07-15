@@ -383,6 +383,32 @@
   }
 
   /* ---------- Closing ---------- */
+  .watch {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+  }
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #2A1E1B;
+    box-shadow: var(--shadow-lg);
+  }
+  .video-embed iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+  }
+  .watch-dl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-top: 14px;
+    display: inline-block;
+  }
   .closing {
     max-width: 620px;
     margin: 0 auto 60px;
@@ -594,6 +620,15 @@
         <li>You're allowed to set a hard stop, even decades in. Erica's took nineteen years. It still counted.</li>
       </ul>
     </div>
+  </section>
+
+  <section class="watch">
+    <p class="section-eyebrow">Now Streaming — PG Edition</p>
+    <h2 class="section-title">Watch the Full Sitting</h2>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/W15En9I9_Is" title="The Five W's — E.Myers' Story, Part One" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <a class="watch-dl" href="https://youtu.be/W15En9I9_Is" target="_blank" rel="noopener">Watch on YouTube ↗</a>
   </section>
 
   <div class="closing">
